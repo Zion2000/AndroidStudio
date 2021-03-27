@@ -9,6 +9,20 @@
 
 
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"/>
+
+
+
+
 
     <TextView
         android:layout_width="match_parent"
@@ -19,6 +33,7 @@
         android:gravity="center"
         android:id="@+id/tv_register"
         />
+</RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,14 +91,13 @@
 
             />
     </RelativeLayout>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-
-
         android:text="btn_one"
         android:id="@+id/btn_one"
+        android:onClick="registerOnClick"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         />

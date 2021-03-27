@@ -26,10 +26,10 @@ public class ShowloginActivity extends AppCompatActivity {
         TextView tv_password = findViewById(R.id.et_password);
 
         if(tv_name.equals("") || tv_password.equals("")){
-
+            tv_name.setText(name);
+            tv_password.setText(password);
         }
-        tv_name.setText(name);
-        tv_password.setText(password);
+
 
 
         /*
