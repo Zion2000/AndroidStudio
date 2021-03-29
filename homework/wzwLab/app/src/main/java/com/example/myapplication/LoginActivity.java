@@ -21,8 +21,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-
         /*
          * 账号 密码控件
          *
@@ -40,9 +38,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tv_register.setOnClickListener(this);
         tv_forget.setOnClickListener(this);
 
-
+        /*
+        * 登陆功能思想
+        *   1.点按钮获取输入框内容
+        *   2.判断内容合法性
+        *   3.验证是否注册过
+        *   4.反馈登陆结果
+        * */
     }
-
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -62,10 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
         }
-
-
     }
-
     //数据传递
     private void passDate() {
         //创建意图对象  跳转页面
@@ -80,7 +80,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                  */
         startActivityForResult(intent, 1);
     }
-
     /*
   通过startActivityForResult的方式接受返回数据的方法
   requestCode：请求的标志,给每个页面发出请求的标志不一样，这样以后通过这个标志接受不同的数据
@@ -95,13 +94,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             user_name.setText(content);
         }
 
-
- /*   public void click(View v){
-        myBtn_one.setText("already clidcked");
-    }*/
-
-
     }
-
-
 }

@@ -41,24 +41,26 @@
         >
 
         <EditText
+            android:id="@+id/et_uname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name"
             android:maxLines="2"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:id="@+id/et_uname"
+
             android:gravity="center"
 
             />
         <EditText
+            android:id="@+id/et_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="  Email  |  phone "
             android:maxLines="2"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:id="@+id/et_find"
+
             android:layout_below="@+id/et_uname"
             android:gravity="center"
 
