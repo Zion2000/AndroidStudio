@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/locationInfo"
-        android:layout_width="wrap_content"
+        android:id="@+id/text_Info"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textSize="18sp"/>
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="?android:attr/listDivider" />
 
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
-    <com.baidu.mapapi.map.MapView
-        android:id="@+id/bmapView"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:clickable="true"
-        ></com.baidu.mapapi.map.MapView>
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="dkgray">#FF444444</color>
+    <color name="white">#FFF</color>
+    <color name="colorPrimary">#1F2131</color>
+    <color name="colorPrimaryDark">#ED1F2131</color>
+    <color name="action_bar_devided_line">#FF232537</color>
+    <color name="color_layout">#CC22253D</color>
+    <color name="color_btn_press">#292B3C</color>
+    <color name="color_btn_nopress">#171924</color>
+    <color name="color_white">#fff</color>
+    <color name="color_black">#191919</color>
+    <color name="colorAccent">#03DAC5</color>
 </resources>
