@@ -57,7 +57,7 @@ public class PoiListAdapter extends BaseAdapter  {
             convertView = View.inflate(mcontext, R.layout.poi_item, null);
             viewHolder.poiName = (TextView) convertView.findViewById(R.id.poi_name);
             viewHolder.poiAddress = (TextView) convertView.findViewById(R.id.poi_address);
-            viewHolder.poiChilderList = (GridView) convertView.findViewById(R.id.childer_poi_gridview);
+           // viewHolder.poiChilderList = (GridView) convertView.findViewById(R.id.childer_poi_gridview);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -105,7 +105,7 @@ public class PoiListAdapter extends BaseAdapter  {
     private static class ViewHolder {
         TextView poiName;
         TextView poiAddress;
-        GridView poiChilderList;
+       // GridView poiChilderList;
     }
 
 

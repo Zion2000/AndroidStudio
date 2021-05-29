@@ -121,11 +121,13 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
         super.onCreate(savedInstanceState);
         SDKInitializer.initialize(getApplicationContext()); //初始化
         setContentView(R.layout.activity_location_type);
+        getSupportActionBar().hide();//隐藏标题栏
         // 初始化ui
         mPoiInfo = (RelativeLayout) findViewById(R.id.poi_info);
         mPoiList = (ListView) findViewById(R.id.poi_list);
         // 地图初始化
         mMapView = (MapView) findViewById(R.id.bmapView);
+        mMapView.showZoomControls(false);
         mBaiduMap = mMapView.getMap();
         // 获取传感器管理服务
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);

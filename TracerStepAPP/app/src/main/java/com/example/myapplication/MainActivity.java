@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 *     在这增加你需要的功能~
 * */
     private static final DemoInfo[] DEMOS = {
-            new DemoInfo(R.drawable.map, R.string.demo_title_layerlist, R.string.demo_desc_layerlist, LayersList.class),
+            new DemoInfo(R.drawable.map, R.string.demo_title_layerlist, R.string.demo_desc_layerlist, LocationTypeDemo.class),
     };
 
 /*

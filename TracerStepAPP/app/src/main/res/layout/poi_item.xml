@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#D9ffffff"
+    >
 
     <TextView
         android:id="@+id/poi_name"
@@ -25,6 +27,8 @@
         android:horizontalSpacing="5dp"
         android:numColumns="4"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="5dip" />
+        android:verticalSpacing="5dip"
+        android:background="#D9ffffff"
+        />
 
 </LinearLayout>

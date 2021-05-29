@@ -42,12 +42,10 @@
         </activity>
 
         <activity
-            android:name=".LayersList"
-           />
-
-        <activity
             android:name=".LocationTypeDemo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+
+            />
 
 
         <service

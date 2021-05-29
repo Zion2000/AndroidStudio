@@ -4,8 +4,6 @@
 <!--这里是MainActivity调用~-->
     <string name="demo_title_layerlist">test</string>
     <string name="demo_desc_layerlist">tttttest</string>
-    <!--这里是MainActivity调用~-->
-    <string name="demo_title_locationtype">显示定位</string>
-    <string name="demo_desc_locationtype">定位</string>
+
 
 </resources>
