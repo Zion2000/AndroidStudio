@@ -26,10 +26,10 @@ public class LocationStr {
         sb.append(location.getLongitude());
         sb.append("\n纬度 : ");// 经度
         sb.append(location.getLatitude());
-        sb.append("\n城市 : ");// 城市
+      /*  sb.append("\n城市 : ");// 城市
         sb.append(location.getCity());
         sb.append("\n区县 : ");// 区
-        sb.append(location.getDistrict());
+        sb.append(location.getDistrict());*/
       /*  sb.append("\n精度 : ");// 半径
         sb.append(location.getRadius());
 

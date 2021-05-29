@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public class SDKReceiver extends BroadcastReceiver {
         public void onReceive(Context context, Intent intent) {
-            System.out.println("广播监听类，监听 SDK key 验证以及网络异常广播");
+            //System.out.println("广播监听类，监听 SDK key 验证以及网络异常广播");
             String action = intent.getAction();
             if (TextUtils.isEmpty(action)) {
                 return;
@@ -209,58 +209,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
-    /**
-     * 定位初始化
-     */
-
-   /* private  class MyLocationListener extends BDAbstractLocationListener{
-        @Override
-        public void onReceiveLocation(BDLocation bdLocation) {
-            navigateTo(bdLocation);
-            StringBuilder currentPosition = new StringBuilder();
-            currentPosition.append("维度:").append(bdLocation.getLatitude()).append("\n");
-            currentPosition.append("经度:").append(bdLocation.getLongitude()).append("\n");
-            currentPosition.append("国家:").append(bdLocation.getCountry()).append("\n");
-            currentPosition.append("省:").append(bdLocation.getProvince()).append("\n");
-            currentPosition.append("市:").append(bdLocation.getCity()).append("\n");
-            currentPosition.append("区:").append(bdLocation.getDistrict()).append("\n");
-            currentPosition.append("村镇:").append(bdLocation.getTown()).append("\n");
-            currentPosition.append("街道:").append(bdLocation.getStreet()).append("\n");
-            currentPosition.append("地址:").append(bdLocation.getAddrStr()).append("\n");
-            currentPosition.append("定位方式: ");
-            if(bdLocation.getLocType() == BDLocation.TypeGpsLocation){
-                currentPosition.append("GPS");
-                Toast.makeText(getApplicationContext(),"GPS",Toast.LENGTH_SHORT).show();
-
-            }else if(bdLocation.getLocType() == BDLocation.TypeNetWorkLocation){
-                currentPosition.append("网络");
-                Toast.makeText(getApplicationContext(),"网络",Toast.LENGTH_SHORT).show();
-
-            }
-            loacatoinInfo.setText(currentPosition);
-        }
-    }*/
-
-  /*  private  void   navigateTo(BDLocation  bdLocation){
-        if(isFirstlocation){
-        LatLng ll = new LatLng(bdLocation.getLatitude(),bdLocation.getLongitude());
-        MapStatusUpdate update = MapStatusUpdateFactory.newLatLng(ll);
-        mBaiduMap.animateMapStatus(update);
-        update = MapStatusUpdateFactory.zoomTo(16f);//当前图的缩放 16f
-        mBaiduMap.animateMapStatus(update); // 重新展示
-        isFirstlocation=false;
-       }
-        MyLocationData locData = new MyLocationData.Builder()
-                .accuracy(bdLocation.getRadius())
-                // 此处设置开发者获取到的方向信息，顺时针0-360
-                .direction(bdLocation.getDirection())
-                .latitude(bdLocation.getLatitude())
-                .longitude(bdLocation.getLongitude())
-                .build();
-        mBaiduMap.setMyLocationData(locData);
-    }*/
 
     @Override
     protected void onResume() {

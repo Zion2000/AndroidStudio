@@ -27,7 +27,7 @@
 
 
         <Button
-            android:id="@+id/continuous_location"
+            android:id="@+id/WalkingRoute"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -37,10 +37,42 @@
             android:layout_weight="1"
             android:background="@drawable/custom_change_btn"
             android:gravity="center"
-            android:text="xxx"
+            android:text="步行"
             android:textColor="#ffffff"
             android:textSize="18sp"
-            android:onClick="setNormalType"
+            android:onClick="setRoute"
+            />
+        <Button
+            android:id="@+id/DrivingRoute"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_change_btn"
+            android:gravity="center"
+            android:text="驾车"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:onClick="setRoute"
+            />
+        <Button
+            android:id="@+id/TransitRoute"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_change_btn"
+            android:gravity="center"
+            android:text="公交"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:onClick="setRoute"
             />
     </LinearLayout>
 
@@ -119,6 +151,7 @@
                     android:textFontWeight="12"
                     android:textSize="13sp" />
 
+
             </ScrollView>
 
             <ScrollView
@@ -141,4 +174,34 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/poi_info"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="附近展示"
+                android:textColor="#FF0000"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/poi_list"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
 </RelativeLayout>
