@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">My Application</string>
 
-<!--这里是MainActivity调用~-->
+    <!--这里是MainActivity调用~-->
+
+    <string name="user">账号</string>
+    <string name="desc_user">查看账号信息</string>
     <string name="demo_title_layerlist">test</string>
     <string name="demo_desc_layerlist">tttttest</string>
-
+    <string name="demo_title_interest">test2</string>
+    <string name="demo_desc_interest">tttttest2</string>
 
 </resources>

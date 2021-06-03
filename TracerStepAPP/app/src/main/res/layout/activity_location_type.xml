@@ -90,22 +90,31 @@
         android:gravity="center_horizontal">
 
         <ImageButton
-            android:id="@+id/User_btn"
+            android:id="@+id/travel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="300dp"
             android:layout_marginTop="25dp"
-
-
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/like1"
+            android:onClick="setting_btn"
+            />
+        <ImageButton
+            android:id="@+id/Info_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="25dp"
             android:layout_weight="1"
             android:gravity="center"
             android:src="@drawable/sort_one"
             android:textColor="#ffffff"
             android:textSize="18sp"
-            android:onClick="setRoute"
+            android:onClick="setting_btn"
             />
         <ImageButton
-            android:id="@+id/travel_btn"
+            android:id="@+id/User_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -116,7 +125,7 @@
             android:src="@drawable/user"
             android:textColor="#ffffff"
             android:textSize="18sp"
-            android:onClick="setRoute"
+            android:onClick="setting_btn"
             />
     </RelativeLayout>>
 

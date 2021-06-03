@@ -1,7 +1,10 @@
-package com.example.myapplication;
+package com.example.myapplication.PoiSelect;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -20,12 +23,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapPoi;
 import com.baidu.mapapi.map.MapStatus;
@@ -34,7 +35,6 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
-import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.core.RouteLine;
@@ -44,11 +44,13 @@ import com.baidu.mapapi.search.geocode.GeoCoder;
 import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
-import com.baidu.mapapi.search.route.PlanNode;
 import com.baidu.mapapi.utils.OpenClientUtil;
 import com.baidu.mapapi.utils.route.BaiduMapRoutePlan;
 import com.baidu.mapapi.utils.route.RouteParaOption;
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.R;
 import com.example.myapplication.util.LocationStr;
+import com.example.myapplication.util.MyDatabaseHelper;
 import com.example.myapplication.util.PoiListAdapter;
 
 import java.util.List;
@@ -115,7 +117,16 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
     String Endstreet ="null";
     String Endcity ="null";
     String Endname ="null";// 珠海市香洲区第十小学;
-    String Endaddress ="null";//香洲区富柠街40号
+    String Endaddress =null;//香洲区富柠街40号
+    String EndpoiID = null;
+    String Endtag =null;
+    double EndLatitude =0;
+    double EndLongitude =0 ;
+
+    Intent intent ;
+    private MyDatabaseHelper databaseHelper;
+    private SQLiteDatabase db;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,6 +174,9 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
             }
         });
 
+        //数据库~
+        databaseHelper = new MyDatabaseHelper(this);
+        db = databaseHelper.getWritableDatabase();
     }
 
     /**
@@ -213,6 +227,73 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
 
         mLocClient.setLocOption(locationOption);
         mLocClient.start();
+    }
+
+    /*
+    * 跳转用户或者传递已经选择有兴趣的地点
+    * */
+    public void setting_btn(View view) {
+        switch (view.getId()){
+            case R.id.travel_btn:
+                //System.out.println("test"+EndpoiID);
+                if (EndpoiID == null){
+                    Toast.makeText(LocationTypeDemo.this, "请选择兴趣点poi", Toast.LENGTH_LONG).show();
+                    break;
+                }else if (Endaddress == null){
+                    Toast.makeText(LocationTypeDemo.this, "请选择兴趣点poi", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                AlertDialog alertDialog2 = new AlertDialog.Builder(this)
+                        .setTitle(Endname)
+                        .setMessage("您已选择："+Endaddress+"的"+Endname+"\n您确定想要添加此Poi？？")
+                        .setIcon(R.mipmap.ic_launcher)
+                        .setPositiveButton("添加！", new DialogInterface.OnClickListener() {//添加"Yes"按钮
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                db = databaseHelper.getReadableDatabase();
+                                ContentValues cv = new ContentValues();
+                                cv.put("_PoiID",EndpoiID);
+                                cv.put("_Uid",1);
+                                cv.put("city",Endcity);
+                                cv.put("name",Endname);
+                                cv.put("address",Endaddress);
+                                cv.put("latitude",EndLatitude);
+                                cv.put("longitude",EndLongitude);
+                                db.insert("PoiInfo",null,cv);
+                                Toast.makeText(LocationTypeDemo.this, "已添加成功~", Toast.LENGTH_LONG).show();
+
+                               // db.close();
+                            }
+                        })
+
+                        .setNegativeButton("算了", new DialogInterface.OnClickListener() {//添加取消
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                               // Toast.makeText(LocationTypeDemo.this, "这是取消按钮", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .create();
+                alertDialog2.show();
+
+                break;
+            case R.id.Info_btn:
+               intent = new Intent(this, InfoActivity.class);
+                if (EndpoiID != null){
+                    intent.putExtra("EndpoiID", EndpoiID);
+                    intent.putExtra("Endaddress", Endaddress);
+                    intent.putExtra("Endname", Endname);
+                    intent.putExtra("Endtag",Endtag);
+                }
+
+                startActivity(intent);
+                break;
+            case R.id.User_btn:
+                //创建意图对象  跳转页面
+                intent = new Intent(this,MainActivity.class);
+                startActivity(intent);
+                break;
+        }
+
     }
 
     @Override
@@ -331,6 +412,8 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
         // 发起反地理编码请求，该方法必须在监听之后执行，否则会在某些场景出现拿不到回调结果的情况
         mSearch.reverseGeoCode(reverseGeoCodeOption);
     }
+
+
     /**
      * 逆地理编码查询回调结果
      */
@@ -367,6 +450,10 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
                         System.out.println(poiInfo);
                         Endname = poiInfo.name;
                         Endaddress =poiInfo.address;
+                        EndpoiID  = poiInfo.uid;
+                        Endtag    = poiInfo.tag;
+                        EndLatitude =poiInfo.getLocation().latitude;
+                        EndLongitude =poiInfo.getLocation().longitude;
                         addPoiLoction(poiInfo.getLocation());
                     }
                 });
@@ -375,7 +462,7 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
                 Toast.makeText(LocationTypeDemo.this, "周边没有poi", Toast.LENGTH_LONG).show();
                 showNearbyPoiView(false);
             }
-            Toast.makeText(LocationTypeDemo.this, result.getAddress() + " adcode: " + result.getAdcode(), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(LocationTypeDemo.this, result.getAddress() + " adcode: " + result.getAdcode(), Toast.LENGTH_SHORT).show();
             //get自定义获取详情地址
             /*
             * 	city
@@ -392,8 +479,8 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
 
             mLat2 = result.getLocation().latitude;
             mLon2 = result.getLocation().longitude;
-            Endstreet =result.getAddressDetail().city;
-            Endcity =result.getAddressDetail().street;
+            Endcity =result.getAddressDetail().city;
+            Endstreet =result.getAddressDetail().street;
             getmdestination = new StringBuffer(256);
             getmdestination.append(mTouchType);
             getmdestination.append("\n指定经度：");
@@ -716,5 +803,7 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
         mBaiduMap.setMyLocationEnabled(false);
         // 在activity执行onDestroy时必须调用mMapView.onDestroy()
         mMapView.onDestroy();
+        // 清空poi的id
+        EndpoiID = null;
     }
 }

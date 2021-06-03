@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item android:id="@+id/detail_item"
+            android:title="查看详情或修改"/>
+
+        <item android:id="@+id/delete_item"
+            android:title="删除"/>
+
+</menu>

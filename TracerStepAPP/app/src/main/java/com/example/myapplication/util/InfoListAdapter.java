@@ -2,31 +2,25 @@ package com.example.myapplication.util;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.search.core.PoiChildrenInfo;
-import com.baidu.mapapi.search.core.PoiDetailInfo;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.example.myapplication.R;
 
 import java.util.List;
 
 
-
-public class PoiListAdapter extends BaseAdapter  {
+public class InfoListAdapter extends BaseAdapter  {
 
     private Context mcontext;
     private List<PoiInfo> mPoilist;
     private OnGetChildrenLocationListener mOnGetChildrenLocationListener = null;
 
-    public PoiListAdapter(Context mcontext, List<PoiInfo> mPoilist) {
+    public InfoListAdapter(Context mcontext, List<PoiInfo> mPoilist) {
         this.mcontext = mcontext;
         this.mPoilist = mPoilist;
     }
@@ -69,6 +63,31 @@ public class PoiListAdapter extends BaseAdapter  {
         viewHolder.poiAddress.setTextColor(Color.rgb(65,105,225));
 
 
+        //具体地址的扩展view
+        /*PoiDetailInfo poiDetailInfo = mPoilist.get(position).getPoiDetailInfo();
+        if (poiDetailInfo != null && null != poiDetailInfo.getPoiChildrenInfoList() &&
+                poiDetailInfo.getPoiChildrenInfoList().size() > 0) {
+
+            viewHolder.poiChilderList.setVisibility(View.VISIBLE);
+            List<PoiChildrenInfo> poiChildrenInfoList = poiDetailInfo.getPoiChildrenInfoList();
+            PoiChidrenAdapter poiChidrenAdapter = new PoiChidrenAdapter(mcontext, poiChildrenInfoList);
+            poiChidrenAdapter.setOnGetChildrenLocationListener(this);
+            viewHolder.poiChilderList.setAdapter(poiChidrenAdapter);
+
+        } else {
+            viewHolder.poiChilderList.setVisibility(View.GONE);
+        }*/
+
+
+       /* convertView = View.inflate(mcontext, R.layout.poi_item, null);
+        TextView  poiName = (TextView) convertView.findViewById(R.id.poi_name);
+        TextView poiAddress = (TextView) convertView.findViewById(R.id.poi_address);
+       // GridView poiChilderList = (GridView) convertView.findViewById(R.id.childer_poi_gridview);
+        poiName.setText(mPoilist.get(position).getName());
+        poiName.setTextColor(Color.rgb(65,105,225));
+        poiAddress.setText(mPoilist.get(position).getAddress());
+        poiAddress.setTextColor(Color.rgb(65,105,225));
+           viewHolder.poiChilderList.setVisibility(View.GONE);*/
 
 
         return convertView;
