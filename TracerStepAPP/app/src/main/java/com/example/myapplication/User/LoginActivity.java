@@ -3,12 +3,15 @@ package com.example.myapplication.User;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.*;
 
 import com.example.myapplication.R;
+import com.example.myapplication.util.MyDatabaseHelper;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -18,7 +21,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ImageButton btn_login;
     private TextView tv_register;
     private TextView tv_forget;
-
+    private MyDatabaseHelper databaseHelper;
+    private SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +31,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
          * 账号 密码控件
          *
          * 登录按钮控件
-         *
          * */
         user_name = findViewById(R.id.et_name);
         user_password = findViewById(R.id.et_password);
@@ -47,19 +50,45 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         *   3.验证是否注册过
         *   4.反馈登陆结果
         * */
+
+        databaseHelper = new MyDatabaseHelper(this);
+        databaseHelper.onOpen(db);
+        db = databaseHelper.getReadableDatabase();
+        db = databaseHelper.getWritableDatabase();
     }
     @Override
     public void onClick(View v) {
         int id = v.getId();
         Intent intent = new Intent();
+
         switch (id) {
 
             case R.id.btn_login:
-                passDate(); //数据传递
+                db = databaseHelper.getReadableDatabase();
+                String selection="name=? and passwrod=?";
+
+
+                Cursor cursor = db.query("User", null, selection, new String[]{user_name.getText().toString().trim(),user_password.getText().toString().trim()}, null, null, null);
+                if (user_name ==null || user_password ==null){
+                    Toast.makeText(this,"不能为空",Toast.LENGTH_LONG).show();
+                }
+
+                if (cursor.getCount() == 0) {
+                    Toast.makeText(this, "用户名或密码错误", Toast.LENGTH_LONG).show();
+                } else {
+                    passDate(); //数据传递
+                }
+                cursor.close();
+                db.close();
                 break;
+
             case R.id.tv_register:
+
                 intent = new Intent(this, RegisterActivity.class);
+                startActivity(intent);
+
                 break;
+
             case R.id.tv_forget:
                 intent = new Intent(this, ForgetActivity.class);
                 //开启意图 带返回值
@@ -82,10 +111,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                  */
         startActivityForResult(intent, 1);
 
-       /*Intent intent = new Intent();
-        intent.setAction("com.qsd.test.MY_ACTION");
-         intent.addCategory("com.qsd.test.MY_CATEGORY");
-        startActivity(intent);*/
+
+
 
     }
     /*
@@ -98,9 +125,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == 2) {//当请求码是1&&返回码是2进行下面操作
             System.out.println("OK");
-            String content = data.getStringExtra("data");
-            user_name.setText(content);
+            String name = data.getStringExtra("name");
+            String password = data.getStringExtra("password");
+            user_name.setText(name);
+
         }
 
+
+
+
     }
+
+
 }

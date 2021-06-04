@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
 public class ShowloginActivity extends AppCompatActivity {
@@ -53,6 +55,12 @@ public class ShowloginActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void btn_one(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+startActivity(intent);
 
     }
 }

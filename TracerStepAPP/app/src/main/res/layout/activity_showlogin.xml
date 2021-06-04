@@ -70,11 +70,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-
-
         android:text="btn_one"
-        android:id="@+id/btn_one"
+
+        android:onClick="btn_one"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         />

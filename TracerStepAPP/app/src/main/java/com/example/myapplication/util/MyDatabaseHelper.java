@@ -10,7 +10,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
 
     public MyDatabaseHelper(@Nullable Context context) {
-        super(context, "StepMap.db", null, 1);
+        super(context, "StepMap.db", null, 2);
     }
 
     @Override
@@ -26,6 +26,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 "stuImg VARCHAR ," +
                 "details VARCHAR  )";
         db.execSQL(sql);
+
+        String sql1 = "CREATE TABLE User(_id integer primary key autoincrement," +
+                "name VARCHAR ," +
+                "passwrod VARCHAR ," +
+                "email VARCHAR )";
+        db.execSQL(sql1);
+
     }
 
     @Override

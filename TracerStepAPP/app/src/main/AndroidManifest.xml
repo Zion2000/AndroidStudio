@@ -30,15 +30,22 @@
             android:value="S4dlyBElEsGTxWkWdQ4MvGHK9rePAdXb" />
 
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity
+            android:name=".PoiSelect.LocationTypeDemo"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".User.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".PoiSelect.LocationTypeDemo"
-            android:screenOrientation="portrait" />
+        <activity android:name=".User.ForgetActivity" />
+        <activity android:name=".User.RegisterActivity"/>
+        <activity android:name=".User.ShowloginActivity" />
 
         <service
             android:name="com.baidu.location.f"

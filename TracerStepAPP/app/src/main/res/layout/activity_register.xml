@@ -75,8 +75,9 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:id="@+id/et_pwd"
-            android:layout_below="@+id/et_email"            android:gravity="center"
-
+            android:inputType="textPassword"
+            android:layout_below="@+id/et_email"
+            android:gravity="center"
             />
         <EditText
             android:layout_width="match_parent"
@@ -86,9 +87,9 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:id="@+id/et_cpwd"
+            android:inputType="textPassword"
             android:layout_below="@+id/et_pwd"
             android:gravity="center"
-
             />
     </RelativeLayout>
 
