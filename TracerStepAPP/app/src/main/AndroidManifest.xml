@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PoiSelect.ShowUinfo"></activity>
+        <activity android:name=".PoiSelect.ShowUinfo"
+                  android:screenOrientation="portrait"></activity>
         <activity android:name=".PoiSelect.ShowdetailInfo" />
         <activity android:name=".PoiSelect.AddDetailInfo" />
         <activity android:name=".PoiSelect.InfoActivity" />
@@ -33,7 +34,7 @@
 
         </activity>
         <activity
-            android:name=".PoiSelect.LocationTypeDemo"
+            android:name=".PoiSelect.LocationType"
             android:screenOrientation="portrait" />
 
         <activity android:name=".User.LoginActivity" >

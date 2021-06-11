@@ -83,6 +83,7 @@ public class PoiCitySearch extends AppCompatActivity implements OnGetPoiSearchRe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poicitysearch);
+        getSupportActionBar().hide();//隐藏标题栏
         // 创建map
         mMapView = (MapView) findViewById(R.id.bmapView);
         mBaiduMap = mMapView.getMap();
@@ -151,6 +152,7 @@ public class PoiCitySearch extends AppCompatActivity implements OnGetPoiSearchRe
      */
     @Override
     public void onGetPoiResult(final PoiResult result) {
+        System.out.println("test result:"+result);
         if (result == null || result.error == SearchResult.ERRORNO.RESULT_NOT_FOUND) {
             mLoadIndex = 0;
             mBaiduMap.clear();

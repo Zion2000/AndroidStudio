@@ -5,9 +5,9 @@
 
     <string name="user">账号</string>
     <string name="desc_user">查看账号信息</string>
-    <string name="demo_title_layerlist">test</string>
-    <string name="demo_desc_layerlist">tttttest</string>
-    <string name="demo_title_interest">test2</string>
-    <string name="demo_desc_interest">tttttest2</string>
+    <string name="demo_title_layerlist">定位</string>
+    <string name="demo_desc_layerlist">查看自身定位，标记新的兴趣点</string>
+    <string name="demo_title_interest">计划展示</string>
+    <string name="demo_desc_interest">将标记的兴趣点全部展示</string>
 
 </resources>

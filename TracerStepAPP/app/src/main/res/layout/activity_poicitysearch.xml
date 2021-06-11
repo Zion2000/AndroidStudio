@@ -22,7 +22,7 @@
             android:id="@+id/city"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="北京"
+            android:text="珠海市"
             android:textColor="@color/white" />
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.88"
-            android:text="北京大学"
+            android:text="唐家湾"
             android:textColor="@color/white" />
 
         <Button

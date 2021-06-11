@@ -60,7 +60,7 @@ import java.util.List;
  * 展示定位图
  */
 
-public class LocationTypeDemo extends AppCompatActivity implements SensorEventListener {
+public class LocationType extends AppCompatActivity implements SensorEventListener {
 
     // 定位相关
     private LocationClient mLocClient;
@@ -85,6 +85,7 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
     // 点击模块，也可去掉地图模块独立使用
     private GeoCoder mSearch = null;
     private GeoCoder mSearch_depart = null;
+
     // 是否首次定位
     private boolean isFirstLoc = true;
     // 是否开启定位图层
@@ -237,10 +238,10 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
             case R.id.travel_btn:
                 //System.out.println("test"+EndpoiID);
                 if (EndpoiID == null){
-                    Toast.makeText(LocationTypeDemo.this, "请选择兴趣点poi", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LocationType.this, "请选择兴趣点poi", Toast.LENGTH_LONG).show();
                     break;
                 }else if (Endaddress == null){
-                    Toast.makeText(LocationTypeDemo.this, "请选择兴趣点poi", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LocationType.this, "请选择兴趣点poi", Toast.LENGTH_LONG).show();
                     break;
                 }
                 AlertDialog alertDialog2 = new AlertDialog.Builder(this)
@@ -260,7 +261,7 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
                                 cv.put("latitude",EndLatitude);
                                 cv.put("longitude",EndLongitude);
                                 db.insert("PoiInfo",null,cv);
-                                Toast.makeText(LocationTypeDemo.this, "已添加成功~", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LocationType.this, "已添加成功~", Toast.LENGTH_LONG).show();
 
                                // db.close();
                             }
@@ -427,7 +428,7 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
             //System.out.println("test3");
 
             if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-                Toast.makeText(LocationTypeDemo.this, "抱歉，未能找到结果", Toast.LENGTH_LONG).show();
+                Toast.makeText(LocationType.this, "抱歉，未能找到结果", Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -459,7 +460,7 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
                 });
 
             }else {
-                Toast.makeText(LocationTypeDemo.this, "周边没有poi", Toast.LENGTH_LONG).show();
+                Toast.makeText(LocationType.this, "周边没有poi", Toast.LENGTH_LONG).show();
                 showNearbyPoiView(false);
             }
            // Toast.makeText(LocationTypeDemo.this, result.getAddress() + " adcode: " + result.getAdcode(), Toast.LENGTH_SHORT).show();
@@ -636,7 +637,7 @@ public class LocationTypeDemo extends AppCompatActivity implements SensorEventLi
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                OpenClientUtil.getLatestBaiduMapApp(LocationTypeDemo.this);
+                OpenClientUtil.getLatestBaiduMapApp(LocationType.this);
             }
         });
 

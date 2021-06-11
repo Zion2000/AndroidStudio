@@ -19,8 +19,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.VersionInfo;
-import com.example.myapplication.PoiSelect.InfoActivity;
-import com.example.myapplication.PoiSelect.LocationTypeDemo;
+import com.example.myapplication.PoiSelect.LocationType;
 import com.example.myapplication.PoiSelect.ShowUinfo;
 import com.example.myapplication.User.ShowloginActivity;
 
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView text = (TextView) findViewById(R.id.text_Info);
         text.setTextColor(Color.GREEN);
-        text.setText("欢迎使用XXXXXAndroid SDK v" + VersionInfo.getApiVersion());
+        text.setText("欢迎使用TracerStepApp");
         setTitle(getTitle() + " v" + VersionInfo.getApiVersion());
 
         // 添加ListItem，设置事件响应
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 * */
     private static final DemoInfo[] DEMOS = {
         new DemoInfo(R.drawable.user, R.string.user, R.string.desc_user, ShowloginActivity.class),
-            new DemoInfo(R.drawable.route, R.string.demo_title_layerlist, R.string.demo_desc_layerlist, LocationTypeDemo.class),
+            new DemoInfo(R.drawable.route, R.string.demo_title_layerlist, R.string.demo_desc_layerlist, LocationType.class),
             new DemoInfo(R.drawable.map, R.string.demo_title_interest, R.string.demo_desc_layerlist, ShowUinfo.class)
     };
 

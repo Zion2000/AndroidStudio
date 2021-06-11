@@ -2,6 +2,7 @@ package com.example.myapplication.PoiSelect;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
@@ -78,10 +79,8 @@ public class ShowUinfo extends AppCompatActivity implements BaiduMap.OnMapLoaded
         super.onCreate(savedInstanceState);
         SDKInitializer.initialize(getApplicationContext()); //初始化
         setContentView(R.layout.activity_show_uinfo);
+        getSupportActionBar().hide();//隐藏标题栏
         mMapView = (MapView) findViewById(R.id.bmapView);
-
-
-
         mBaiduMap = mMapView.getMap();
         mBaiduMap.setOnMapLoadedCallback(this);
 
@@ -99,33 +98,28 @@ public class ShowUinfo extends AppCompatActivity implements BaiduMap.OnMapLoaded
 
         while (c.moveToNext()){
             LatLng latLngA = new LatLng(c.getDouble(6), c.getDouble(7));
-            MarkerOptions markerOptionsA = new MarkerOptions().position(latLngA).icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marka));
+            MarkerOptions markerOptionsA = new MarkerOptions().position(latLngA).icon(BitmapDescriptorFactory.fromResource(R.drawable.markerblue));
             mMarkerA = (Marker) (mBaiduMap.addOverlay(markerOptionsA));
 
         }
-        c.moveToFirst();
-       // MapStatusUpdate mapStatusUpdate = MapStatusUpdateFactory.zoomTo(18.0f);
-        //mBaiduMap.setMapStatus(mapStatusUpdate);
+
         Toast.makeText(this," 查询完成",Toast.LENGTH_LONG).show();
 
-
+        c.moveToFirst();
         LatLng ll = new LatLng(c.getDouble(6), c.getDouble(7));
         MapStatus.Builder builder = new MapStatus.Builder();
-        builder.target(ll).zoom(18.0f);
+        builder.target(ll);
+        builder.zoom(18.0f);
         mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
 
-     //   mMapStatus = new MapStatus.Builder().target(new LatLng(c.getDouble(6), c.getDouble(7))).zoom(18.0f).build();
-      //  mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(mMapStatus));
 
     }
-
-
 
 
     @Override
     public void onMapLoaded() {
         // TODO Auto-generated method stub
-        mMapStatus = new MapStatus.Builder().zoom(9).build();
+        mMapStatus = new MapStatus.Builder().zoom(18.0f).build();
         mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(mMapStatus));
     }
 
@@ -151,4 +145,7 @@ public class ShowUinfo extends AppCompatActivity implements BaiduMap.OnMapLoaded
         mMapView.onDestroy();
     }
 
+    public void back2_btn(View view) {
+        finish();
+    }
 }
