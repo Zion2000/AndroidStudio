@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         Cursor cursor = db.query("User", null, "name=?", new String[]{et_uname.getText().toString()}, null, null, null);
         if (cursor.getCount() != 0) {
             Toast.makeText(this, "账号已经存在", Toast.LENGTH_LONG).show();
-        }else if (et_cpwd.getText().toString().trim() != et_pwd.getText().toString().trim()){
+        }else if (!(et_cpwd.getText().toString().trim().equals( et_pwd.getText().toString().trim()))){
             Toast.makeText(this,"密码不一致",Toast.LENGTH_LONG).show();
         }else if(et_pwd.getText().toString().length()>=8 ||et_pwd.getText().toString().length()<3) {
             Toast.makeText(this,"密码长度不符",Toast.LENGTH_LONG).show();
