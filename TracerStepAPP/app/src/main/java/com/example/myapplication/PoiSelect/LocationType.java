@@ -369,7 +369,6 @@ public class LocationType extends AppCompatActivity implements SensorEventListen
     /**
      * 更新地图状态显示面板
      */
-
     StringBuffer getmdestination ;//自定义获取详情地址
     private void updateMapState(String str) {
         //System.out.println("test1");
@@ -378,12 +377,10 @@ public class LocationType extends AppCompatActivity implements SensorEventListen
             state = "点击、长按、双击地图以获取经纬度和地图状态";
             mdestination_loc_tv.setText(state);
         } else {
-
             /*getmdestination.append("\n指定经度：");
             getmdestination.append(mCurrentPt.longitude);
             getmdestination.append("\n指定纬度：");
             getmdestination.append(mCurrentPt.latitude);*/
-
             ooA = new MarkerOptions().position(mCurrentPt).icon(BitmapDescriptorFactory.fromResource(R.drawable.markerblue));
             mBaiduMap.clear();
             mBaiduMap.addOverlay(ooA);
@@ -392,7 +389,6 @@ public class LocationType extends AppCompatActivity implements SensorEventListen
         }
 
     }
-
     /**
      * 发起搜索
      */
@@ -413,8 +409,6 @@ public class LocationType extends AppCompatActivity implements SensorEventListen
         // 发起反地理编码请求，该方法必须在监听之后执行，否则会在某些场景出现拿不到回调结果的情况
         mSearch.reverseGeoCode(reverseGeoCodeOption);
     }
-
-
     /**
      * 逆地理编码查询回调结果
      */
@@ -686,16 +680,15 @@ public class LocationType extends AppCompatActivity implements SensorEventListen
         }
     }*/
 
-
+    /**
+     * 定位请求回调函数
+     *  定位结果
+     */
     private BDAbstractLocationListener continuoueLocationListener = new BDAbstractLocationListener() {
 
-        /**
-         * 定位请求回调函数
-         *  定位结果
-         */
+
             @Override
             public void onReceiveLocation(BDLocation location) {
-
                 currentPosition  = new StringBuilder(256);
                 mLat1 = location.getLatitude();
                 mLon1 = location.getLongitude();

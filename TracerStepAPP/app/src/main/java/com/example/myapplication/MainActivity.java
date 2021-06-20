@@ -88,17 +88,15 @@ public class MainActivity extends AppCompatActivity {
         // 申请动态权限
         requestPermission();
 
-
         // 注册 SDK 广播监听者
         IntentFilter iFilter = new IntentFilter();
         iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_OK);
         iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
         iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
+
         //网络产生变化或者 intent的
         mReceiver = new SDKReceiver();
         registerReceiver(mReceiver, iFilter);
-
-
     }
 
 /*
